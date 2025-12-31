@@ -1,35 +1,30 @@
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #2c2c2c;
-  font-family: Arial, sans-serif;
+const buttons = document.querySelectorAll(".btn");
+const stopButton = document.querySelector(".stop");
+
+const audios = [
+  document.getElementById("audio1"),
+  document.getElementById("audio2"),
+  document.getElementById("audio3"),
+  document.getElementById("audio4"),
+  document.getElementById("audio5"),
+  document.getElementById("audio6"),
+];
+
+// Stop all audios
+function stopAll() {
+  audios.forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
 }
 
-#buttons {
-  display: flex;
-  gap: 15px;
-}
+// Play corresponding audio
+buttons.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    stopAll();
+    audios[index].play();
+  });
+});
 
-.btn, .stop {
-  padding: 15px 25px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn {
-  background-color: #6c63ff;
-  color: white;
-}
-
-.stop {
-  background-color: #ff4d4d;
-  color: white;
-}
-
-.btn:hover, .stop:hover {
-  opacity: 0.85;
-}
+// Stop button
+stopButton.addEventListener("click", stopAll);

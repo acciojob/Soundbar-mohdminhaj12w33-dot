@@ -2,18 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sound Board</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <section id="buttons">
-    <button class="btn" data-sound="sound1">Sound 1</button>
-    <button class="btn" data-sound="sound2">Sound 2</button>
-    <button class="btn" data-sound="sound3">Sound 3</button>
+    <button class="btn">Sound 1</button>
+    <button class="btn">Sound 2</button>
+    <button class="btn">Sound 3</button>
+    <button class="btn">Sound 4</button>
+    <button class="btn">Sound 5</button>
+    <button class="btn">Sound 6</button>
     <button class="stop">Stop</button>
   </section>
+
+  <!-- Audio elements MUST exist in DOM -->
+  <audio id="audio1" src="sounds/sound1.mp3"></audio>
+  <audio id="audio2" src="sounds/sound2.mp3"></audio>
+  <audio id="audio3" src="sounds/sound3.mp3"></audio>
+  <audio id="audio4" src="sounds/sound4.mp3"></audio>
+  <audio id="audio5" src="sounds/sound5.mp3"></audio>
+  <audio id="audio6" src="sounds/sound6.mp3"></audio>
 
   <script src="script.js"></script>
 </body>
