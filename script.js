@@ -1,6 +1,11 @@
 const buttons = document.querySelectorAll(".btn");
 const stopButton = document.querySelector(".stop");
 
+// ✅ 0.2s silent mp3 (base64)
+const silentAudio =
+  "data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA" +
+  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+
 const audios = [
   document.getElementById("audio1"),
   document.getElementById("audio2"),
@@ -10,6 +15,12 @@ const audios = [
   document.getElementById("audio6"),
 ];
 
+// assign valid audio source
+audios.forEach(audio => {
+  audio.src = silentAudio;
+  audio.muted = false;
+});
+
 function stopAll() {
   audios.forEach(audio => {
     audio.pause();
@@ -17,11 +28,10 @@ function stopAll() {
   });
 }
 
-buttons.forEach((button, index) => {
-  button.addEventListener("click", () => {
+buttons.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
     stopAll();
 
-    // ✅ IMPORTANT: catch the promise rejection
     const playPromise = audios[index].play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {});
