@@ -10,7 +10,6 @@ const audios = [
   document.getElementById("audio6"),
 ];
 
-// Stop all audios
 function stopAll() {
   audios.forEach(audio => {
     audio.pause();
@@ -18,13 +17,16 @@ function stopAll() {
   });
 }
 
-// Play corresponding audio
-buttons.forEach((btn, index) => {
-  btn.addEventListener("click", () => {
+buttons.forEach((button, index) => {
+  button.addEventListener("click", () => {
     stopAll();
-    audios[index].play();
+
+    // ✅ IMPORTANT: catch the promise rejection
+    const playPromise = audios[index].play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {});
+    }
   });
 });
 
-// Stop button
 stopButton.addEventListener("click", stopAll);
